@@ -1,5 +1,5 @@
 einops
-gradio==4.15.0
+gradio
 huggingface_hub
 matplotlib
 numpy>=1.23.4
@@ -28,4 +28,3 @@ typing_extensions==4.7.1
 validators
 visual_genome
 xlsxwriter
-xtuner
