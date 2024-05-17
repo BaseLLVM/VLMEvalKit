@@ -7,7 +7,7 @@ from .cogvlm import CogVlm
 from .emu import Emu
 from .idefics import IDEFICS, IDEFICS2
 from .instructblip import InstructBLIP
-from .llava import LLaVA, LLaVA_Next, LLaVA_XTuner
+from .llava import LLaVA, LLaVA_Next, LLaVA_XTuner, LLaVA_Omni
 from .minicpm_v import MiniCPM_V
 from .minigpt4 import MiniGPT4
 from .mmalaya import MMAlaya

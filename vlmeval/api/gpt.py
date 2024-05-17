@@ -130,24 +130,30 @@ class OpenAIWrapper(BaseAPI):
         if max_tokens <= 0:
             return 0, self.fail_msg + 'Input string longer than context window. ', 'Length Exceeded. '
 
-        headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {self.openai_key}'}
-        payload = dict(
-            model=self.model,
-            messages=input_msgs,
-            max_tokens=max_tokens,
-            n=1,
-            temperature=temperature,
-            **kwargs)
-        response = requests.post(self.api_base, headers=headers, data=json.dumps(payload), timeout=self.timeout * 1.1)
-        ret_code = response.status_code
-        ret_code = 0 if (200 <= int(ret_code) < 300) else ret_code
-        answer = self.fail_msg
-        try:
-            resp_struct = json.loads(response.text)
-            answer = resp_struct['choices'][0]['message']['content'].strip()
-        except:
-            pass
-        return ret_code, answer, response
+        # headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {self.openai_key}'}
+        # payload = dict(
+        #     model=self.model,
+        #     messages=input_msgs,
+        #     max_tokens=max_tokens,
+        #     n=1,
+        #     temperature=temperature,
+        #     **kwargs)
+        # response = requests.post(self.api_base, headers=headers, data=json.dumps(payload), timeout=self.timeout * 1.1)
+        # ret_code = response.status_code
+        # ret_code = 0 if (200 <= int(ret_code) < 300) else ret_code
+        # answer = self.fail_msg
+        # try:
+        #     resp_struct = json.loads(response.text)
+        #     answer = resp_struct['choices'][0]['message']['content'].strip()
+        # except:
+        #     pass
+        # return ret_code, answer, response
+        from omni.utils.gpt_utils import call_gpt
+
+        gpt_kwargs = dict(max_tokens=max_tokens, n=1, temperature=temperature, **kwargs)
+        resp_struct = call_gpt(input_msgs, model=self.model, return_all=True, **gpt_kwargs)
+        answer = resp_struct.choices[0].message.content.strip()
+        return 999, answer, None
 
     def get_token_len(self, inputs) -> int:
         import tiktoken

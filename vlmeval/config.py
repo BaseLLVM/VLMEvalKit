@@ -37,15 +37,30 @@ api_models = {
     'QwenVLPlus': partial(QwenVLAPI, model='qwen-vl-plus', temperature=0, retry=10),
     'QwenVLMax': partial(QwenVLAPI, model='qwen-vl-max', temperature=0, retry=10),
     # Reka Series
-    'RekaEdge': partial(Reka, model='reka-edge-20240208'), 
-    'RekaFlash': partial(Reka, model='reka-flash-20240226'), 
-    'RekaCore': partial(Reka, model='reka-core-20240415'), 
+    'RekaEdge': partial(Reka, model='reka-edge-20240208'),
+    'RekaFlash': partial(Reka, model='reka-flash-20240226'),
+    'RekaCore': partial(Reka, model='reka-core-20240415'),
     # Internal Only
     'GPT4V_INT': partial(GPT4V_Internal, model='gpt-4-vision-preview', temperature=0, img_size=512, img_detail='low', retry=10),
     'Step1V': partial(Step1V, temperature=0, retry=10),
     'Claude3V_Opus': partial(Claude3V, model='claude-3-opus-20240229', temperature=0, retry=10),
     'Claude3V_Sonnet': partial(Claude3V, model='claude-3-sonnet-20240229', temperature=0, retry=10),
     'Claude3V_Haiku': partial(Claude3V, model='claude-3-haiku-20240307', temperature=0, retry=10),
+}
+
+omni_series = {
+    "llava_v1.5_7b_omni": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_fiximagepreprocess",
+    ),
+    "llava_v1.5_7b_omni_emu_loss": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_emu_loss",
+    ),
+    "llava_v1.5_7b_omni_emu_eva": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_emu_eva",
+    ),
 }
 
 xtuner_series = {
@@ -120,8 +135,8 @@ deepseekvl_series = {
 supported_VLM = {}
 
 model_groups = [
-    ungrouped, api_models, 
-    xtuner_series, qwen_series, llava_series, internvl_series, yivl_series,
+    ungrouped, api_models,
+    omni_series, xtuner_series, qwen_series, llava_series, internvl_series, yivl_series,
     xcomposer_series, minigpt4_series, idefics_series, instructblip_series,
     deepseekvl_series
 ]
@@ -133,6 +148,7 @@ transformer_ver = {}
 transformer_ver['4.33.0'] = list(qwen_series) + list(internvl_series) + list(xcomposer_series) + [
     'mPLUG-Owl2', 'flamingov2', 'VisualGLM_6b', 'MMAlaya', 'PandaGPT_13B'
 ] + list(idefics_series) + list(minigpt4_series) + list(instructblip_series)
+transformer_ver["4.35.2"] = list(omni_series)
 transformer_ver['4.37.0'] = [x for x in llava_series if 'next' not in x] + [
     'TransCore_M', 'cogvlm-chat', 'cogvlm-grounding-generalist', 'emu2_chat', 'MiniCPM-V', 'MiniCPM-V-2', 'OmniLMM_12B', 'InternVL-Chat-V1-5'
 ] + list(xtuner_series) + list(yivl_series) + list(deepseekvl_series)
