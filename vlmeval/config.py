@@ -53,6 +53,10 @@ omni_series = {
         LLaVA_Omni,
         model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_fiximagepreprocess",
     ),
+    "llava_v1.5_7b_omni_clip224": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_clip224",
+    ),
     "llava_v1.5_7b_omni_emu_loss": partial(
         LLaVA_Omni,
         model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_emu_loss",
@@ -60,6 +64,26 @@ omni_series = {
     "llava_v1.5_7b_omni_emu_eva": partial(
         LLaVA_Omni,
         model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_emu_eva",
+    ),
+    "llava_v1.5_7b_omni_emu_eva_emu_loss": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_emu_eva_emu_loss",
+    ),
+    "llava_v1.5_7b_omni_emu_eva_emu_loss_unfreeze_clip": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_emu_eva_emu_loss_unfreeze_clip",
+    ),
+    "llava_v1.5_7b_omni_eva": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_eva",
+    ),
+    "llava_v1.5_7b_omni_eva_emu_loss": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_eva_emu_loss",
+    ),
+    "llava_v1.5_7b_omni_eva_emu_loss_unfreeze_clip": partial(
+        LLaVA_Omni,
+        model_pth="/mnt/shared-storage/tenant/hypertext/yuangpeng/work_dirs/llava/llava_v15_7b_sft_eva_emu_loss_unfreeze_clip",
     ),
 }
 
